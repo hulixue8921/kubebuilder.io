@@ -1,0 +1,29 @@
+apiVersion: app.kubebuilder.io/v1
+kind: DeployObject
+metadata:
+  labels:
+    app.kubernetes.io/name: apps
+    app.kubernetes.io/managed-by: kustomize
+  name: nginx
+ # namespace: zhiying-dev
+spec:
+  # TODO(user): Add fields here
+  #image: "harbor.kuailaizhiying.com/zhiying/swagger_pro:20240424_09"
+  image: nginx:1.12
+  appLogDir: "/var/log/nginx"
+  logFormat: '^\}'
+  port: 80
+  cpu: "1000m"
+  mem: "1Gi"
+  num: 1
+  nginx:
+    host: ""
+    url:
+    annotations: 
+       nginx.org/client-max-body-size: 100m
+       nginx.org/server-snippets: |
+            
+ # secret: "default-token-pmflw"
+status: 
+  status: 0
+
