@@ -84,19 +84,23 @@ func CreateContain(object *appv1.DeployObject) *coreV1.Container {
 
 	if len(req.Spec.Disk.Path) == 0 {
 		volumeMounts = append(volumeMounts, timeMounts, logMounts)
-		if len(req.Spec.Secret) != 0 {
-			secretMount := coreV1.VolumeMount{
-				Name:      req.Spec.Secret,
-				MountPath: "/etc/secret/",
-			}
-			volumeMounts = append(volumeMounts, secretMount)
-		}
 	} else {
 		otherMounts := coreV1.VolumeMount{
 			Name:      req.Name + "-nfs",
 			MountPath: req.Spec.Disk.Path,
 		}
 		volumeMounts = append(volumeMounts, timeMounts, logMounts, otherMounts)
+	}
+
+	if len(req.Spec.Secret) != 0 {
+		for _, name := range req.Spec.Secret {
+
+			secretMount := coreV1.VolumeMount{
+				Name:      name,
+				MountPath: "/etc/secret/" + name,
+			}
+			volumeMounts = append(volumeMounts, secretMount)
+		}
 	}
 
 	// 探针对象

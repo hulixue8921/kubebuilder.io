@@ -87,7 +87,9 @@ spec:
                 format: int32
                 type: integer
               secret:
-                type: string
+                items:
+                  type: string
+                type: array
             type: object
           status:
             description: DeployObjectStatus defines the observed state of DeployObject

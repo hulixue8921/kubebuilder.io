@@ -2,34 +2,20 @@ package main
 
 import (
 	"fmt"
+	"reflect"
 )
 
-type X interface {
-	run()
-}
-
-type P struct {
-	Name string
-	Have []string
-}
-
-func (p P) run() {
-	fmt.Println("run")
-}
-
-func T(x X) {
-
-}
-
 func main() {
-	//	x, _ := os.ReadFile("./1.go")
-	//	fmt.Println(string(x))
 
-	x := `
-	xxxx
-	"cjvljdlj"
-	cjvlljlj
-	xxcjvldfjdf`
+	a := [3]int{1, 2, 3}
 
-	fmt.Println(x)
+	b := a[0:2:2]
+
+	fmt.Println(reflect.TypeOf(b))
+
+	b = append(b, 5)
+	fmt.Println(b)
+
+	fmt.Println(a)
+
 }

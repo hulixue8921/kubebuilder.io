@@ -100,6 +100,11 @@ func (in *DeployObjectSpec) DeepCopyInto(out *DeployObjectSpec) {
 			(*out)[key] = val
 		}
 	}
+	if in.Secret != nil {
+		in, out := &in.Secret, &out.Secret
+		*out = make([]string, len(*in))
+		copy(*out, *in)
+	}
 	out.Disk = in.Disk
 	in.Nginx.DeepCopyInto(&out.Nginx)
 }

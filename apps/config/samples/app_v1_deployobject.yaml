@@ -16,14 +16,15 @@ spec:
   cpu: "1000m"
   mem: "1Gi"
   num: 1
-  nginx:
-    host: ""
-    url:
-    annotations: 
-       nginx.org/client-max-body-size: 100m
-       nginx.org/server-snippets: |
-            
- # secret: "default-token-pmflw"
+ # nginx:
+ #   host: ""
+ #   url:
+ #   annotations: 
+ #      nginx.org/client-max-body-size: 100m
+ #      nginx.org/server-snippets: |          
+  secret: 
+    - "default-token-pmflw"
+    - "my-secret"
 status: 
   status: 0
 

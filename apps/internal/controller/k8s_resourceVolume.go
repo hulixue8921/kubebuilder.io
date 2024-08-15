@@ -6,7 +6,7 @@ import (
 )
 
 const (
-	NfsServer   = "192.168.1.1"
+	NfsServer   = "k8snfs.kuailaizhiying.com"
 	NfsRootPath = "/data/nfs/"
 )
 
@@ -156,10 +156,12 @@ func CreateVolumeForDeployment(Object *appv1.DeployObject) []VolumeInterface {
 	}
 
 	if len(Object.Spec.Secret) != 0 {
-		secretVolume := &SecretVolume{
-			SecretName: Object.Spec.Secret,
+		for _, name := range Object.Spec.Secret {
+			secretVolume := &SecretVolume{
+				SecretName: name,
+			}
+			volumes = append(volumes, secretVolume)
 		}
-		volumes = append(volumes, secretVolume)
 	}
 	return volumes
 

@@ -10,7 +10,7 @@ import (
 )
 
 const (
-	Eshost = "192.168.1.1"
+	Eshost = "k8ses.kuailaizhiying.com"
 )
 
 type EsInfo struct {

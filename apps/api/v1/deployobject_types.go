@@ -49,7 +49,7 @@ type DeployObjectSpec struct {
 	Port        int32             `json:"port,omitempty"`
 	Cpu         string            `json:"cpu,omitempty"`
 	Mem         string            `json:"mem,omitempty"`
-	Secret      string            `json:"secret,omitempty"`
+	Secret      []string          `json:"secret,omitempty"`
 	Disk        `json:"disk,omitempty"`
 	AppLogDir   string `json:"appLogDir,omitempty"`
 	LogFormat   string `json:"logFormat,omitempty"`
