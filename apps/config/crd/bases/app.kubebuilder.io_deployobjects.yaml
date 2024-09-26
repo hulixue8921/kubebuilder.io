@@ -86,6 +86,8 @@ spec:
               port:
                 format: int32
                 type: integer
+              resourceLevel:
+                type: string
               secret:
                 items:
                   type: string

@@ -70,6 +70,19 @@ func CreateContain(object *appv1.DeployObject) *coreV1.Container {
 		coreV1.ResourceCPU:    cpuQuantity,
 		coreV1.ResourceMemory: memQuantity,
 	}
+     
+	var resource coreV1.ResourceRequirements
+	if req.Spec.ResourceLevel == "0" {
+        resource =coreV1.ResourceRequirements{
+              Limits: r,
+		}
+	} else {
+		resource =coreV1.ResourceRequirements{
+			Limits: r,
+			Requests: r,
+		}
+	}
+
 	// 需要挂载的卷
 	volumeMounts := []coreV1.VolumeMount{}
 	timeMounts := coreV1.VolumeMount{
@@ -137,22 +150,25 @@ func CreateContain(object *appv1.DeployObject) *coreV1.Container {
 			PostStart: &coreV1.LifecycleHandler{
 				Exec: &coreV1.ExecAction{
 					Command: []string{
-						"ls",
+						"./start.sh",
 					},
 				},
 			},
 			PreStop: &coreV1.LifecycleHandler{
 				Exec: &coreV1.ExecAction{
 					Command: []string{
-						"ls",
+						"./stop.sh",
 					},
 				},
 			},
 		},
+		/*
 		Resources: coreV1.ResourceRequirements{
 			Limits:   r,
 			Requests: r,
 		},
+		*/
+	    Resources: resource,
 		VolumeMounts: volumeMounts,
 	}
 

@@ -5,11 +5,11 @@ metadata:
     app.kubernetes.io/name: apps
     app.kubernetes.io/managed-by: kustomize
   name: nginx
- # namespace: zhiying-dev
+  namespace: zhiying-dev
 spec:
   # TODO(user): Add fields here
   #image: "harbor.kuailaizhiying.com/zhiying/swagger_pro:20240424_09"
-  image: nginx:1.12
+  image: nginx
   appLogDir: "/var/log/nginx"
   logFormat: '^\}'
   port: 80
@@ -22,9 +22,10 @@ spec:
  #   annotations: 
  #      nginx.org/client-max-body-size: 100m
  #      nginx.org/server-snippets: |          
-  secret: 
-    - "default-token-pmflw"
-    - "my-secret"
+ # secret: 
+ #   - "default-token-pmflw"
+ #   - "my-secret"
+ #   - "regcred"
 status: 
   status: 0
 

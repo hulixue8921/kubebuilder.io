@@ -42,18 +42,19 @@ type DeployObjectSpec struct {
 	// Foo is an example field of DeployObject. Edit deployobject_types.go to remove/update
 
 	// +kubebuilder:validation:Required
-	Labels      map[string]string `json:"labels,omitempty"`
-	Annotations map[string]string `json:"annotations,omitempty"`
-	Num         int32             `json:"num,omitempty"`
-	Image       string            `json:"image,omitempty"`
-	Port        int32             `json:"port,omitempty"`
-	Cpu         string            `json:"cpu,omitempty"`
-	Mem         string            `json:"mem,omitempty"`
-	Secret      []string          `json:"secret,omitempty"`
-	Disk        `json:"disk,omitempty"`
-	AppLogDir   string `json:"appLogDir,omitempty"`
-	LogFormat   string `json:"logFormat,omitempty"`
-	Nginx       `json:"nginx,omitempty"`
+	Labels        map[string]string `json:"labels,omitempty"`
+	Annotations   map[string]string `json:"annotations,omitempty"`
+	Num           int32             `json:"num,omitempty"`
+	Image         string            `json:"image,omitempty"`
+	Port          int32             `json:"port,omitempty"`
+	Cpu           string            `json:"cpu,omitempty"`
+	Mem           string            `json:"mem,omitempty"`
+	Secret        []string          `json:"secret,omitempty"`
+	Disk          `json:"disk,omitempty"`
+	AppLogDir     string `json:"appLogDir,omitempty"`
+	LogFormat     string `json:"logFormat,omitempty"`
+	ResourceLevel string `json:"resourceLevel,omitempty"`
+	Nginx         `json:"nginx,omitempty"`
 }
 
 // DeployObjectStatus defines the observed state of DeployObject

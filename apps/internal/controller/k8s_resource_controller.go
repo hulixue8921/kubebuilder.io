@@ -163,7 +163,10 @@ func ObjectCheck(object *appv1.DeployObject) error {
 	if len(object.Spec.LogFormat) == 0 {
 		object.Spec.LogFormat = `^\[`
 	}
-
+    
+	if len(object.Spec.ResourceLevel) == 0 {
+		object.Spec.ResourceLevel = "0"
+	}
 	return nil
 
 }
