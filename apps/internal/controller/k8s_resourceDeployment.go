@@ -70,15 +70,13 @@ func CreateContain(object *appv1.DeployObject) *coreV1.Container {
 		coreV1.ResourceCPU:    cpuQuantity,
 		coreV1.ResourceMemory: memQuantity,
 	}
-     
+
 	var resource coreV1.ResourceRequirements
 	if req.Spec.ResourceLevel == "0" {
-        resource =coreV1.ResourceRequirements{
-              Limits: r,
-		}
+		resource = coreV1.ResourceRequirements{}
 	} else {
-		resource =coreV1.ResourceRequirements{
-			Limits: r,
+		resource = coreV1.ResourceRequirements{
+			Limits:   r,
 			Requests: r,
 		}
 	}
@@ -162,13 +160,7 @@ func CreateContain(object *appv1.DeployObject) *coreV1.Container {
 				},
 			},
 		},
-		/*
-		Resources: coreV1.ResourceRequirements{
-			Limits:   r,
-			Requests: r,
-		},
-		*/
-	    Resources: resource,
+		Resources:    resource,
 		VolumeMounts: volumeMounts,
 	}
 
