@@ -22,14 +22,21 @@ func CreateLogContain(object *appv1.DeployObject) *coreV1.Container {
 		coreV1.ResourceMemory: memQuantity,
 	}
 
+	var resource coreV1.ResourceRequirements
+	if req.Spec.ResourceLevel == "0" {
+		resource = coreV1.ResourceRequirements{}
+	} else {
+		resource = coreV1.ResourceRequirements{
+			Limits:   r,
+			Requests: r,
+		}
+	}
+
 	return &coreV1.Container{
 		Name:            req.Name + "-log",
 		Image:           "logstash:7.4.1",
 		ImagePullPolicy: "IfNotPresent",
-		Resources: coreV1.ResourceRequirements{
-			Limits:   r,
-			Requests: r,
-		},
+		Resources: resource,
 		Lifecycle: &coreV1.Lifecycle{
 			PreStop: &coreV1.LifecycleHandler{
 				Exec: &coreV1.ExecAction{
